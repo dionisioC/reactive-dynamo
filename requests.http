@@ -1,0 +1,30 @@
+###
+POST http://localhost:8080/thoughts
+Content-Type: application/json
+
+{
+  "content": "Test content",
+  "kind": "POSITIVE"
+}
+
+###
+GET http://localhost:8080/thoughts/0e8e7353-22b5-42d6-844a-1365bad4302e
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/thoughts
+Content-Type: application/json
+
+{
+  "id": "0e8e7353-22b5-42d6-844a-1365bad4302e",
+  "content": "New test content",
+  "kind": "NEGATIVE"
+}
+
+###
+GET http://localhost:8080/thoughts
+Content-Type: application/json
+
+###
+DELETE http://localhost:8080/thoughts/0e8e7353-22b5-42d6-844a-1365bad4302e
+Content-Type: application/json
