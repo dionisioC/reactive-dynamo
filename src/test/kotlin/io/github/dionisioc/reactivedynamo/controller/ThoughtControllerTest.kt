@@ -201,7 +201,7 @@ class ThoughtControllerTest {
                             .build()
                     }
 
-            }
+            }.join()
         }
 
         @JvmStatic
