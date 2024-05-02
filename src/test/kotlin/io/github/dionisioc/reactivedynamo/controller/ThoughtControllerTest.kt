@@ -33,7 +33,6 @@ private lateinit var dbServer: DynamoDBProxyServer
 private lateinit var dynamoDbEnhancedAsyncClient: DynamoDbEnhancedAsyncClient
 private lateinit var thoughtTable: DynamoDbAsyncTable<Thought>
 
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ThoughtControllerTest {
 
@@ -45,7 +44,6 @@ class ThoughtControllerTest {
         val expectedContent = "Test content"
         val expectedKind = Kind.POSITIVE
         var savedThoughtId = ""
-
 
         webClient
             .post()
