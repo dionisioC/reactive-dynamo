@@ -173,6 +173,8 @@ class ThoughtControllerTest {
             .jsonPath("$").isArray
             .jsonPath("$", hasSize<Array<ThoughtResponse>>(2))
 
+        thoughtTable.deleteItem(Key.builder().partitionValue(savedThoughtId).build()).join()
+        thoughtTable.deleteItem(Key.builder().partitionValue(savedThoughtId).build()).join()
     }
 
 
