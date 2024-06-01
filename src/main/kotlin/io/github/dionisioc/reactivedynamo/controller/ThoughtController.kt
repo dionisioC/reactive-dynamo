@@ -4,7 +4,6 @@ import io.github.dionisioc.reactivedynamo.controller.request.ThoughtRequest
 import io.github.dionisioc.reactivedynamo.controller.response.ThoughtResponse
 import io.github.dionisioc.reactivedynamo.service.ThoughtService
 import jakarta.validation.Valid
-import org.springframework.http.HttpStatus
 import org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
