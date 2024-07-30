@@ -16,7 +16,7 @@
     <properties>
         <java.version>21</java.version>
         <kotlin.version>2.0.0</kotlin.version>
-        <software.amazon.awssdk.version>2.26.21</software.amazon.awssdk.version>
+        <software.amazon.awssdk.version>2.26.26</software.amazon.awssdk.version>
         <DynamoDBLocal.version>2.5.2</DynamoDBLocal.version>
     </properties>
     <dependencies>
