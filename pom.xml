@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.0</version>
+        <version>3.5.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.github.dionisioc</groupId>
@@ -16,7 +16,7 @@
     <properties>
         <java.version>21</java.version>
         <kotlin.version>2.1.21</kotlin.version>
-        <software.amazon.awssdk.version>2.31.63</software.amazon.awssdk.version>
+        <software.amazon.awssdk.version>2.31.66</software.amazon.awssdk.version>
         <DynamoDBLocal.version>2.6.0</DynamoDBLocal.version>
     </properties>
     <dependencies>
