@@ -4,10 +4,8 @@ import com.amazonaws.services.dynamodbv2.local.main.ServerRunner
 import com.amazonaws.services.dynamodbv2.local.server.DynamoDBProxyServer
 import io.github.dionisioc.reactivedynamo.configuration.DynamoDbConfiguration
 import io.github.dionisioc.reactivedynamo.controller.request.ThoughtRequest
-import io.github.dionisioc.reactivedynamo.controller.response.ThoughtResponse
 import io.github.dionisioc.reactivedynamo.entity.Thought
 import io.github.dionisioc.reactivedynamo.enums.Kind
-import org.hamcrest.collection.IsCollectionWithSize.hasSize
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
@@ -171,7 +169,7 @@ class ThoughtControllerTest {
             .expectStatus().isOk
             .expectBody()
             .jsonPath("$").isArray
-            .jsonPath("$", hasSize<Array<ThoughtResponse>>(2))
+            .jsonPath("$.length()").isEqualTo(2)
 
         thoughtTable.deleteItem(Key.builder().partitionValue(savedThoughtId).build()).join()
         thoughtTable.deleteItem(Key.builder().partitionValue(savedThoughtId).build()).join()
