@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotNull
 
 data class ThoughtRequest(
     val id: String?,
-    @NotBlank
+    @param:NotBlank
     val content: String,
-    @NotNull
+    @param:NotNull
     val kind: Kind
 )

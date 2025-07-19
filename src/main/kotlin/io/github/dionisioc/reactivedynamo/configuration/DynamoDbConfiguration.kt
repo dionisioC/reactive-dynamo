@@ -12,8 +12,8 @@ import java.net.URI
 
 @Configuration
 class DynamoDbConfiguration(
-    @Value("\${aws.dynamodb.url}") private val url: String,
-    @Value("\${aws.dynamodb.region}") private val region: String
+    @param:Value("\${aws.dynamodb.url}") private val url: String,
+    @param:Value("\${aws.dynamodb.region}") private val region: String
 ) {
 
     @Bean

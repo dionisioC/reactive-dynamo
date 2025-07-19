@@ -1,7 +1,6 @@
 package io.github.dionisioc.reactivedynamo.controller
 
-import com.amazonaws.services.dynamodbv2.local.main.ServerRunner
-import com.amazonaws.services.dynamodbv2.local.server.DynamoDBProxyServer
+
 import io.github.dionisioc.reactivedynamo.configuration.DynamoDbConfiguration
 import io.github.dionisioc.reactivedynamo.controller.request.ThoughtRequest
 import io.github.dionisioc.reactivedynamo.entity.Thought
@@ -20,6 +19,8 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.Key
 import software.amazon.awssdk.enhanced.dynamodb.model.CreateTableEnhancedRequest
 import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput
+import software.amazon.dynamodb.services.local.main.ServerRunner
+import software.amazon.dynamodb.services.local.server.DynamoDBProxyServer
 import java.util.*
 
 private const val DB_HOST = "localhost"
