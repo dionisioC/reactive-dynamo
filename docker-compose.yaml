@@ -3,11 +3,42 @@ services:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
     image: localstack/localstack:4
     ports:
-      - "127.0.0.1:4566:4566"
+      - "4566:4566"
     environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_DEFAULT_REGION=eu-south-2
+      - AWS_SECRET_ACCESS_KEY=test
       - DEBUG=0
-      - DYNAMODB_SHARE_DB=1
+      - SERVICES=dynamodb,sqs,kms
     volumes:
       - "./init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"  # ready hook
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
+
+  dynamodb-local:
+    command: "-Xmx2048m -Xms512m -XX:+UseG1GC -jar DynamoDBLocal.jar -port 8000 -sharedDb -disableTelemetry -inMemory"
+    container_name: "${DYNAMODB_LOCAL_DOCKER_NAME:-dynamodb-local}"
+    image: amazon/dynamodb-local:3.1.0
+    ports:
+      - "8000:8000"
+
+  dynamodb-setup:
+    container_name: dynamodb-setup
+    depends_on:
+      dynamodb-local:
+        condition: service_started
+    image: amazon/aws-cli:2.30.1
+    environment:
+      AWS_ACCESS_KEY_ID: 'FAKEID'
+      AWS_SECRET_ACCESS_KEY: 'FAKEKEY'
+      AWS_REGION: 'eu-south-2'
+    entrypoint:
+      - bash
+    command:
+      - '-c'
+      - |
+        aws dynamodb create-table --endpoint-url http://dynamodb-local:8000 \
+          --table-name THOUGHT \
+          --attribute-definitions AttributeName=id,AttributeType=S \
+          --key-schema AttributeName=id,KeyType=HASH \
+          --billing-mode PAY_PER_REQUEST
