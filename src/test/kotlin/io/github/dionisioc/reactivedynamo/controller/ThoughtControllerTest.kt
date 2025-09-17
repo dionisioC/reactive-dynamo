@@ -24,7 +24,7 @@ import software.amazon.dynamodb.services.local.server.DynamoDBProxyServer
 import java.util.*
 
 private const val DB_HOST = "localhost"
-private const val DB_PORT = 4566
+private const val DB_PORT = 8000
 private const val DB_URI = "http://$DB_HOST:$DB_PORT"
 private const val DB_REGION = "eu-south-2"
 private val args = arrayOf("-sharedDb", "-disableTelemetry", "-inMemory", "-port", DB_PORT.toString())
