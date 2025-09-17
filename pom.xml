@@ -62,6 +62,11 @@
         </dependency>
 
         <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>aws-crt-client</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>software.amazon.dynamodb</groupId>
             <artifactId>DynamoDBLocal</artifactId>
             <version>${DynamoDBLocal.version}</version>

@@ -1,6 +1,10 @@
+import logging
+
 from geventhttpclient.client import HTTPClientPool
-from locust import FastHttpUser, task, constant_pacing, tag
+from locust import FastHttpUser, task, constant_pacing, tag, events
 import random
+
+from locust.runners import WorkerRunner, MasterRunner
 
 
 def generate_thought_data():
@@ -10,6 +14,25 @@ def generate_thought_data():
         "kind": "POSITIVE"
     }
 
+
+@events.test_start.add_listener
+def on_test_start(environment, **kwargs):
+    """
+    This listener runs on the master and on each worker.
+    We check the runner type to see where we are.
+    """
+    if isinstance(environment.runner, WorkerRunner):
+        # This code will only run on a worker node
+        worker_id = environment.runner.client_id
+        logging.info(f"--- Test started on WORKER with ID: {worker_id} ---")
+
+    elif isinstance(environment.runner, MasterRunner):
+        # This code will only run on the master node
+        logging.info("--- Test started on MASTER node ---")
+
+    else:
+        # This code will run when in standalone mode (not distributed)
+        logging.info("--- Test started in STANDALONE mode ---")
 
 class ThoughtUser(FastHttpUser):
     """
